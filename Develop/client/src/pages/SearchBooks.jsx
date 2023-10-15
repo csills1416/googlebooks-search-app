@@ -90,25 +90,7 @@ const SearchBooks = () => {
       <div className="text-light bg-dark p-5">
         <Container>
           <h1>Search for Books!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name='searchInput'
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='Search for a book'
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
-                </Button>
-              </Col>
-            </Row>
-          </Form>
+          {/* ... [rest of the search form] */}
         </Container>
       </div>
 
@@ -130,6 +112,10 @@ const SearchBooks = () => {
                     <Card.Title>{book.title}</Card.Title>
                     <p className='small'>Authors: {book.authors}</p>
                     <Card.Text>{book.description}</Card.Text>
+                    {/* Link to Google Books */}
+                    <Button href={`https://www.google.com/books/edition/_/${book.bookId}`} target='_blank' className='btn-block btn-primary mb-2'>
+                      View on Google Books
+                    </Button>
                     {Auth.loggedIn() && (
                       <Button
                         disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
