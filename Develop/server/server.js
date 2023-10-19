@@ -5,7 +5,7 @@ const db = require('./config/connection');
 const cors = require('cors'); // For handling CORS
 const morgan = require('morgan'); // For logging
 
-const { typeDefs, resolvers } = require('./schemas');
+const { typeDefs, resolvers } = require('./data');
 const { authMiddleware } = require('./utils/auth');
 
 const app = express();
@@ -23,7 +23,8 @@ app.use(express.json());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  introspection: true,
+  playground: true,   
 });
 
 // Remember to start the Apollo Server before applying it as middleware
